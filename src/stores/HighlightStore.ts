@@ -1,57 +1,68 @@
 'use client'
 
-import { makeAutoObservable, runInAction } from 'mobx'
+import { makeAutoObservable, runInAction, observable } from 'mobx'
 import { Highlight } from '@/models/highlight'
 import HighlightStorageProxy from '@/utils/highlightStorageProxy'
 import relatedImageProxy from '@/utils/relatedImageProxy'
 
+export type highlightPreview = {
+  title: string,
+  location: string
+  description: string,
+}
+
 export class HighlightStore {
   highlights: Highlight[] = []
-
-  constructor() {
-    makeAutoObservable(this)
+  imageUrlMap: Map<number, string | undefined> = observable.map()
+  
+   constructor() {
+    makeAutoObservable(this, {
+      imageUrlMap: observable
+    })
   }
 
-  private enrichHighlightWithImage = async (highlight: Highlight) => {
+  fetchImageUrlFor = async (highlight: Highlight) => {
     try {
-      // TODO: Add a fallback of using highlight.location if highlight.title fail / or add a retry handler 
       const imageUrl = await relatedImageProxy.fetchFirstImage(highlight.title)
-      return {
-        ...highlight,
-        imageUrl: imageUrl || null,
-      }
+      runInAction(() => {
+        this.imageUrlMap.set(highlight.id, imageUrl || undefined)
+      })
     } catch {
-      return {
-        ...highlight,
-        imageUrl: null,
-      }
+      runInAction(() => {
+        this.imageUrlMap.set(highlight.id, undefined)
+      })
     }
   }
-  
+
   fetchHighlights = async () => {
     try {
       const data = await HighlightStorageProxy.getHighlights()
-      // Update image URL for each highlight 
-      const updatedData = await Promise.all(
-        data.map(this.enrichHighlightWithImage)
-      )
-
+      
       runInAction(() => {
-        this.highlights = updatedData
+        console.log('check data', data)
+        this.highlights = data
       })
+
+      // Update image URL for each highlight 
+      for (const highlight of data) {
+        this.fetchImageUrlFor(highlight)
+      }
+
     } catch (err: unknown) {
       console.error('error', err)
     }
   }
-
-  addHighlight = async (highlight: Highlight) => {
+  
+  addHighlight = async (highlightPreview: highlightPreview) => {
     try {
-      await HighlightStorageProxy.createHighlight(highlight)
-      const imageUrl = await relatedImageProxy.fetchFirstImage(highlight.title)
+      await HighlightStorageProxy.createHighlight(highlightPreview)
+      const imageUrl = await relatedImageProxy.fetchFirstImage(highlightPreview.title)
 
-      const updatedHighlight = {
-        ...highlight,
-        imageUrl
+      const updatedHighlight: Highlight = {
+        ...highlightPreview,
+        // since we don't handle the delete of highlight object, just assume that the list is consistent 
+        id: this.highlights.length + 1, 
+        imageUrl: imageUrl
       }
 
       runInAction(() => {

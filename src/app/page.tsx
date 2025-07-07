@@ -13,13 +13,13 @@ import classNames from 'classnames'
 
 const Page = observer(() => {
 
-  const { allHighlights } = highlightStore
+  const { allHighlights, imageUrlMap, fetchHighlights } = highlightStore
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const lastHighlightRef = useRef<HTMLDivElement>(null)
-  const { fetchHighlights } = highlightStore
 
   useEffect(() => {
         fetchHighlights()
+        console.log('check allHighlights', allHighlights)
   }, [])
 
   const handleCreateClick = () => {

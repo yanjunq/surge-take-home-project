@@ -1,17 +1,20 @@
+import { observer } from 'mobx-react-lite'
 import { Highlight } from '@/models/highlight'
 import { HighlightImage } from '@/components/highlightImage/HighlightImage';
+import { highlightStore } from '@/stores/HighlightStore';
 
 type Props = {
   highlight: Highlight;
 };
 
-export function HighlightCard({ highlight }: Props) {
+export const HighlightCard = observer(({ highlight }: Props) => {
+  const imageUrl = highlightStore.imageUrlMap.get(highlight.id)
   return (
     <div className="highlight-card">
-      <HighlightImage imageUrl={highlight.imageUrl}></HighlightImage>
-      <h2 className="text-xl font-semibold">{highlight.title}</h2>
-      <p className="text-sm text-gray-600">{highlight.location}</p>
-      <p className="text-gray-800">{highlight.description}</p>
+      <HighlightImage imageUrl={imageUrl} />
+      <h2>{highlight.title}</h2>
+      <p>{highlight.location}</p>
+      <p>{highlight.description}</p>
     </div>
   );
-}
+});

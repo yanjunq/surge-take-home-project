@@ -3,21 +3,20 @@
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { Spinner } from '@/components/spinner/Spinner'
+import { i } from 'framer-motion/client'
 
 type Props = {
  imageUrl?: string
 }
 
-export function HighlightImage(props: Props) {
-  const { imageUrl } = props
-  const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false)
-  const [isValid, setIsValid] = useState<boolean>(true)
+export function HighlightImage({ imageUrl }: Props) {
+  const [isImageLoaded, setIsImageLoaded] = useState(false)
+  const [isValid, setIsValid] = useState(true)
 
   useEffect(() => {
-    if (!imageUrl) {
-      setIsValid(false)
-      setIsImageLoaded(true)
-    }
+    const isValidImage = Boolean(imageUrl && imageUrl.trim() !== "")
+    setIsValid(isValidImage)
+    setIsImageLoaded(true)
   }, [imageUrl])
 
   const handleImageError = () => {
@@ -38,9 +37,9 @@ export function HighlightImage(props: Props) {
       )}
       {isValid ? (
         <motion.img
+          key={imageUrl}
           alt='Highlight Image'
           animate={{ opacity: 1 }}
-          aria-label='highlight-image'
           initial={{ opacity: 0 }}
           src={imageUrl}
           transition={{ duration: 0.5 }}
