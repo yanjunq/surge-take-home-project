@@ -1,0 +1,38 @@
+.spinner {
+  display: inline-block;
+
+  width: 24px;
+  height: 24px;
+  box-sizing: border-box;
+
+  color: var(--text-primary);
+
+  visibility: hidden;
+
+  opacity: 0;
+
+  transition: opacity 0.6s ease-in-out;
+  animation: rotation 2s linear infinite;
+
+  &.is-visible {
+    visibility: visible;
+
+    opacity: 1;
+  }
+
+  &.spinner-absolute {
+    position: absolute;
+    inset: 0;
+
+    margin: auto;
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
