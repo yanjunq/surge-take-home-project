@@ -1,6 +1,6 @@
 import './spinner.css'
 
-import { useDelayedMount } from '@/hook/useDelayedMount'
+import { useDelayedMount } from '@/hooks/useDelayedMount'
 import classNames from 'classnames'
 
 export interface SpinnerProps {

@@ -61,8 +61,7 @@ export class HighlightStore {
       const updatedHighlight: Highlight = {
         ...highlightPreview,
         // since we don't handle the delete of highlight object, just assume that the list is consistent 
-        id: this.highlights.length + 1, 
-        imageUrl: imageUrl
+        id: this.highlights.length + 1
       }
 
       runInAction(() => {
