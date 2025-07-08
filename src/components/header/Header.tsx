@@ -10,9 +10,9 @@ type Props = {
 export function Header({subTitle, title, text}: Props) {
   return (
     <div className='header'>
-        <div>{subTitle}</div>
-        <div className='title'>{title}</div>
-        <div className='text'>{text}</div>
+        <h2 className='sub-title'>{subTitle}</h2>
+        <h1 className='title'>{title}</h1>
+        <p className='text'>{text}</p>
     </div>
   )
 }

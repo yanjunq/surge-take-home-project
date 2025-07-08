@@ -1,3 +1,4 @@
+import './highlight-card.css'
 import { observer } from 'mobx-react-lite'
 import { Highlight } from '@/models/highlight'
 import { HighlightImage } from '@/components/highlightImage/HighlightImage';
@@ -12,9 +13,9 @@ export const HighlightCard = observer(({ highlight }: Props) => {
   return (
     <div className="highlight-card">
       <HighlightImage imageUrl={imageUrl} />
-      <h2>{highlight.title}</h2>
-      <p>{highlight.location}</p>
-      <p>{highlight.description}</p>
+      <h2 className='highlight-title'>{highlight.title}</h2>
+      <p className='hightlight-location'>{highlight.location}</p>
+      <p className='hightlight-description'>{highlight.description}</p>
     </div>
   );
 });

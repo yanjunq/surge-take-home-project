@@ -1,0 +1,17 @@
+.header{
+    .sub-title{
+        font-weight: 600;
+        size: 12px;
+        color: #EC484B;
+        
+    }
+    .title{
+        font-weight: 600;
+        size: 29px;
+    }
+
+    .text{
+        font-weight: 400;
+        size: 16px;
+    }
+}

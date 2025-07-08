@@ -1,9 +1,8 @@
-
+import './highlight-image.css'
 
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { Spinner } from '@/components/spinner/Spinner'
-import { i } from 'framer-motion/client'
 
 type Props = {
  imageUrl?: string
@@ -29,7 +28,7 @@ export function HighlightImage({ imageUrl }: Props) {
   }
 
   return (
-    <div className='highlight-image'>
+    <div>
       {!isImageLoaded && (
         <div className='loading-icon-wrapper'>
           <Spinner className='loadingIcon' delay={200} />
@@ -37,6 +36,7 @@ export function HighlightImage({ imageUrl }: Props) {
       )}
       {isValid ? (
         <motion.img
+          className='highlight-image'
           key={imageUrl}
           alt='Highlight Image'
           animate={{ opacity: 1 }}

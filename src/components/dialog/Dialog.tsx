@@ -33,23 +33,23 @@ export function Dialog({ onCancel, lastHighlightRef }: Props) {
 
     onCancel()
 
-    // Scroll to the new highlight after a short delay to ensure it's rendered
     setTimeout(() => {
       if(lastHighlightRef){
         lastHighlightRef.current?.scrollIntoView({ behavior: 'smooth' })
       }
     }, 300)
-
   }
 
   return (
-    <div className="dialog-container">
-      <div className="dialog-header">
-        <h2>Create a highlight</h2>
-        <button onClick={onCancel} className="dialog-close">×</button>
-      </div>
-      <hr />
-      <div className="dialog-form">
+    <div className="dialog">
+
+      <div className='dialog-container'>
+        <div className="dialog-header">
+          <h2 className='dialog-title'>Create a highlight</h2>
+          <button onClick={onCancel} className="dialog-close">×</button>
+        </div>
+        <div className='border' />
+       <div className="dialog-form">
         <label>
           Highlight name <span className="required">*</span>
           <input
@@ -81,6 +81,7 @@ export function Dialog({ onCancel, lastHighlightRef }: Props) {
       <div className="dialog-actions">
         <Button onClick={onCancel} isDefault={false}>Cancel</Button>
         <Button onClick={handleConfirm} isDefault={true}>Confirm</Button>
+      </div>
       </div>
     </div>
   );

@@ -1,3 +1,59 @@
-.highlight-page{
+.highlights-page{
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    gap: 24px;
+    background-color: #FAFAFA;
+    overflow-x: hidden;
+    height: 100vh;
 
+    &.dialog-open{
+        /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+        &::-webkit-scrollbar {
+            width: 0px;
+            height: 0px;
+            background: transparent;
+        }
+        /* Hide scrollbar for Firefox */
+        scrollbar-width: none;
+        /* Hide scrollbar for Internet Explorer / Edge */
+        -ms-overflow-style: none;
+    }
+    
+    .highlight-cards-container {
+        column-count: 1;
+        column-gap: 16px;
+    }
+
+    .create-button {
+        position: fixed;
+        bottom: 24px;
+        right: 40px;
+        z-index: 2;
+    }
+
+    @media (min-width: 768px) {
+        padding: 40px;
+        gap: 40px;
+
+        .highlight-cards-container {
+            column-count: 2;
+        }
+
+        .create-button{
+            right: 55px;
+        }
+    }
+
+    @media (min-width: 1280px) {
+        padding: 40px 80px;
+
+        .highlight-cards-container {
+            column-count: 4;
+        }
+
+        .create-button{
+            right: 95px;
+        }
+    }
 }

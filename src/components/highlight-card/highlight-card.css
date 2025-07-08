@@ -1,0 +1,40 @@
+.highlight-card {
+  display: flex;
+  flex-direction: column; 
+  padding: 20px;         
+  gap: 8px;           
+  border-radius: 12px;   
+  border: 1px solid #F3F3F3; 
+  opacity: 0.9;
+  background-color: white;
+  margin-bottom: 12px;
+
+  break-inside: avoid;
+  page-break-inside: avoid; 
+  -webkit-column-break-inside: avoid;
+
+  .highlight-title{
+    font-weight: 600;
+    size: 16px;
+  }
+
+  .hightlight-location{
+    font-weight: 400;
+    size: 14px;
+    color: #00000099;
+  }
+
+  .hightlight-description{
+
+    -webkit-line-clamp: 3;  
+    -webkit-box-orient: vertical;
+
+    font-weight: 400;
+    size: 14px;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  
+}
