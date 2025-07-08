@@ -3,7 +3,7 @@
 import { makeAutoObservable, runInAction, observable } from 'mobx'
 import { Highlight } from '@/models/highlight'
 import HighlightStorageProxy from '@/utils/highlightStorageProxy'
-import relatedImageProxy from '@/utils/relatedImageProxy'
+import RelatedImageProxy from '@/utils/relatedImageProxy'
 
 export type highlightPreview = {
   title: string,
@@ -23,7 +23,7 @@ export class HighlightStore {
 
   fetchImageUrlFor = async (highlight: Highlight) => {
     try {
-      const imageUrl = await relatedImageProxy.fetchFirstImage(highlight.title)
+      const imageUrl = await RelatedImageProxy.fetchFirstImage(highlight.title)
       runInAction(() => {
         this.imageUrlMap.set(highlight.id, imageUrl || undefined)
       })
@@ -56,7 +56,7 @@ export class HighlightStore {
   addHighlight = async (highlightPreview: highlightPreview) => {
     try {
       await HighlightStorageProxy.createHighlight(highlightPreview)
-      const imageUrl = await relatedImageProxy.fetchFirstImage(highlightPreview.title)
+      const imageUrl = await RelatedImageProxy.fetchFirstImage(highlightPreview.title)
 
       const updatedHighlight: Highlight = {
         ...highlightPreview,
