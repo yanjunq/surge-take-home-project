@@ -1,7 +1,7 @@
 import './highlight-card.css'
 import { observer } from 'mobx-react-lite'
 import { Highlight } from '@/models/highlight'
-import { HighlightImage } from '@/components/highlightImage/HighlightImage';
+import { HighlightImage } from '@/components/highlight-image/HighlightImage';
 import { highlightStore } from '@/stores/HighlightStore';
 
 type Props = {
