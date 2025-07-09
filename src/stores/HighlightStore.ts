@@ -65,6 +65,8 @@ export class HighlightStore {
       runInAction(() => {
         this.highlights.push(updatedHighlight)
       })
+      
+      this.fetchImageUrlFor(updatedHighlight)
 
     } catch (err: unknown) {
       console.error('Error adding highlight:', err)
