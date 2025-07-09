@@ -19,10 +19,22 @@
         /* Hide scrollbar for Internet Explorer / Edge */
         -ms-overflow-style: none;
     }
-    
+
     .highlight-cards-container {
-        column-count: 1;
-        column-gap: 16px;
+        display: flex;
+        gap: 24px;
+        width: 100%;
+
+        .highlight-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+       }
+
+        .highlight-column > * {
+            width: 100%;
+        }
     }
 
     .create-button {
@@ -35,10 +47,10 @@
     @media (min-width: 768px) {
         padding: 40px;
         gap: 40px;
-
+/* 
         .highlight-cards-container {
             column-count: 2;
-        }
+        } */
 
         .create-button{
             right: 55px;
@@ -48,9 +60,9 @@
     @media (min-width: 1280px) {
         padding: 40px 80px;
 
-        .highlight-cards-container {
+        /* .highlight-cards-container {
             column-count: 4;
-        }
+        } */
 
         .create-button{
             right: 95px;
