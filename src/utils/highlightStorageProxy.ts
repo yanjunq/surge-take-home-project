@@ -1,4 +1,4 @@
- import { type highlightPreview } from "@/stores/HighlightStore"
+ import { type HighlightPreview } from "@/stores/HighlightStore"
 
 class HighlightStorageProxy {
 
@@ -7,8 +7,9 @@ class HighlightStorageProxy {
     if (!res.ok) throw new Error("Failed to fetch highlights")
     return await res.json()
   }
-
-  async createHighlight(highlightPreview: highlightPreview) {
+  
+  async createHighlight(highlightPreview: HighlightPreview) {
+    console.log('check highlightPreview', highlightPreview)
     const res = await fetch('/api/postReview', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

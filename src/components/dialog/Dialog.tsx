@@ -44,44 +44,47 @@ export function Dialog({ onCancel, lastHighlightRef }: Props) {
     <div className="dialog">
 
       <div className='dialog-container'>
-        <div className="dialog-header">
-          <h2 className='dialog-title'>Create a highlight</h2>
-          <button onClick={onCancel} className="dialog-close">×</button>
+        <div>
+          <div className='dialog-header'>
+            <h2 className='dialog-title'>Create a highlight</h2>
+            <button onClick={onCancel} className="dialog-close">×</button>
+          </div>
+          <div className='border' />
         </div>
-        <div className='border' />
+  
+
        <div className="dialog-form">
         <label>
-          Highlight name <span className="required">*</span>
+          <div>Highlight name <span className="required">*</span></div>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </label>
-
         <label>
-          Location <span className="required">*</span>
+          <div>Location <span className="required">*</span></div>
           <input
             type="text"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
           />
         </label>
-
         <label>
-          Description <span className="required">*</span>
+          <div>Description <span className="required">*</span></div>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={4}
           />
         </label>
+
+        <div className="dialog-actions">
+          <Button onClick={onCancel} isDefault={false}>Cancel</Button>
+          <Button onClick={handleConfirm} isDefault={true}>Confirm</Button>
+        </div>
       </div>
 
-      <div className="dialog-actions">
-        <Button onClick={onCancel} isDefault={false}>Cancel</Button>
-        <Button onClick={handleConfirm} isDefault={true}>Confirm</Button>
-      </div>
       </div>
     </div>
   );

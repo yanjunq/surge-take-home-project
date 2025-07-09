@@ -5,7 +5,7 @@ import { Highlight } from '@/models/highlight'
 import HighlightStorageProxy from '@/utils/highlightStorageProxy'
 import RelatedImageProxy from '@/utils/relatedImageProxy'
 
-export type highlightPreview = {
+export type HighlightPreview = {
   title: string,
   location: string
   description: string,
@@ -39,7 +39,6 @@ export class HighlightStore {
       const data = await HighlightStorageProxy.getHighlights()
       
       runInAction(() => {
-        console.log('check data', data)
         this.highlights = data
       })
 
@@ -53,11 +52,10 @@ export class HighlightStore {
     }
   }
   
-  addHighlight = async (highlightPreview: highlightPreview) => {
+  addHighlight = async (highlightPreview: HighlightPreview) => {
     try {
       await HighlightStorageProxy.createHighlight(highlightPreview)
-      const imageUrl = await RelatedImageProxy.fetchFirstImage(highlightPreview.title)
-
+      
       const updatedHighlight: Highlight = {
         ...highlightPreview,
         // since we don't handle the delete of highlight object, just assume that the list is consistent 

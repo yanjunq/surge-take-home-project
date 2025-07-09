@@ -13,16 +13,23 @@
   page-break-inside: avoid; 
   -webkit-column-break-inside: avoid;
 
-  .highlight-title{
-    font-weight: 600;
-    size: 16px;
+  .highlight-header{
+    display: flex;
+    flex-direction: column; 
+    gap: 4px;
+
+    .highlight-title{
+      font-weight: 600;
+      size: 16px;
+    }
+
+    .hightlight-location{
+      font-weight: 400;
+      size: 14px;
+      color: #00000099;
+    }
   }
 
-  .hightlight-location{
-    font-weight: 400;
-    size: 14px;
-    color: #00000099;
-  }
 
   .hightlight-description{
 

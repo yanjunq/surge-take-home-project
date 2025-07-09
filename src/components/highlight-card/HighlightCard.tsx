@@ -13,8 +13,10 @@ export const HighlightCard = observer(({ highlight }: Props) => {
   return (
     <div className="highlight-card">
       <HighlightImage imageUrl={imageUrl} />
-      <h2 className='highlight-title'>{highlight.title}</h2>
-      <p className='hightlight-location'>{highlight.location}</p>
+      <div className='highlight-header'>
+        <p className='highlight-title'>{highlight.title}</p>
+        <p className='hightlight-location'>{highlight.location}</p>
+      </div>
       <p className='hightlight-description'>{highlight.description}</p>
     </div>
   );
